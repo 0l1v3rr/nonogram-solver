@@ -1,3 +1,51 @@
+import solve from './solver.js';
+
+/*const x = [
+    '4 4',
+    '1 2 3 2',
+    '13 1',
+    '13',
+    '4 2 2',
+    '7 1 1',
+    '1 4 1 2',
+    '1 3 3',
+    '1 4 1 2',
+    '7 1',
+    '4 2 1',
+    '13',
+    '8 3 2',
+    '1 6 2',
+    '4 4',
+];
+const y = [
+    '3 3',
+    '1 1 5 1 1',
+    '1 4 4 1',
+    '6 6',
+    '13',
+    '12',
+    '3 5 3',
+    '6 6',
+    '5 2 2',
+    '1 2 3 2 1',
+    '1 2 1 2 1',
+    '1 2 3 2 1',
+    '3 2 2 1 1',
+    '1 2 3',
+    '4 3',
+];
+
+const solution = solve(x, y, 15, 15);
+
+for(let i = 0; i < 15; i++) {
+    let res = "";
+    for(let j = 0; j < 15; j++) {
+        if(solution[i][j]) res += "#";
+        else res += " ";
+    }
+    console.log(res);
+}*/
+
 const gridSizePanel = document.querySelector('[data-grid-size]');
 const mainPanel = document.querySelector('[data-main]');
 
