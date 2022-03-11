@@ -31,6 +31,13 @@ body {
     overflow-x: hidden;
 }
 
+.d-flex {
+    display: flex;
+}
+.fdc {
+    flex-direction: column;
+}
+
 .grid-size {
     background-color: var(--bg-color);
     box-shadow: 0 0 1rem rgba(0, 0, 0, .05);
@@ -126,7 +133,7 @@ body {
     grid-template-columns: repeat(var(--grid-size), 1fr);
     grid-template-rows: repeat(var(--grid-size), 1fr);
     gap: 0;
-    border: 2px solid var(--border-color-darker);
+    border: 2px solid rgba(0, 0, 0, .75);
     background-color: rgba(255, 255, 255, .4);
     max-width: fit-content;
 }
@@ -168,4 +175,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.grid-header {
+    border: 2px solid rgba(0, 0, 0, .75);
+    border-bottom: 0;
+}
+.grid-sidebar {
+    border: 2px solid rgba(0, 0, 0, .75);
+    border-right: 0;
+    margin-top: calc(2rem + 2px);
+}
+.header-input {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--border-color-darker);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: pre-wrap;
+    background-color: rgba(255, 255, 255, .4);
+    color: var(--text-color);
+    font-size: .8rem;
+    text-align: center;
 }
