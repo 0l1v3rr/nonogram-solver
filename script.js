@@ -5,12 +5,14 @@ let y = [];
 
 const gridSizePanel = document.querySelector('[data-grid-size]');
 const mainPanel = document.querySelector('[data-main]');
+const popup = document.querySelector('[data-popup]');
 
 const gridContainer = document.querySelector('[data-grid-container]');
 const gridHeader = document.querySelector('[data-main-header]');
 
 const backBtn = document.querySelector('[data-back-btn]');
 const solveBtn = document.querySelector('[data-solve-btn]');
+const understandBtn = document.querySelector('[data-understand-btn]');
 
 const nextBtn = document.querySelector('[data-next-btn]');
 const grid5x5 = document.getElementById('grid-5x5');
@@ -71,7 +73,8 @@ solveBtn.onclick = () => {
 
     const solution = solve(x, y, activeGridSize, activeGridSize);
     if(solution == null) {
-        // TODO handle
+        popup.classList.add('active');
+        mainPanel.classList.add('blur');
         return;
     }
 
@@ -83,6 +86,11 @@ solveBtn.onclick = () => {
         }
     }
     gridContainer.innerHTML = gridInnerHtml;
+}
+
+understandBtn.onclick = () => {
+    popup.classList.remove('active');
+    mainPanel.classList.remove('blur');
 }
 
 function generateEmptyGrid() {
