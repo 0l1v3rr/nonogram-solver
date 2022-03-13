@@ -147,8 +147,8 @@ body {
     max-width: fit-content;
 }
 .nonogram-grid-item {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
     border: .5px solid var(--border-color-darker);
 }
 .nonogram-grid-item.filled {
@@ -191,27 +191,42 @@ body {
 }
 
 .grid-header {
-    border: 2px solid rgba(0, 0, 0, .75);
+    border-bottom: 0;
+    border: 2px solid transparent;
     border-bottom: 0;
 }
 .grid-sidebar {
-    border: 2px solid rgba(0, 0, 0, .75);
+    margin-top: calc(3rem + 2px);
+    border: 2px solid transparent;
     border-right: 0;
-    margin-top: calc(1.5rem + 2px);
 }
 .header-input {
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 1px solid var(--border-color-darker);
     display: flex;
     justify-content: center;
     align-items: center;
-    white-space: pre-wrap;
-    background-color: rgba(255, 255, 255, .4);
+    white-space: pre-line;
+    background-color: var(--border-color);
+    border: 1px solid var(--bg-color);
+    border-radius: .4rem;
     color: var(--text-color);
     font-size: .8rem;
     text-align: center;
+    overflow: hidden;
 }
+.grid-sidebar > .header-input {
+    height: 2rem;
+    width: 3rem;
+    text-align: right;
+    justify-content: end;
+    padding: 0 .5rem;
+}
+.grid-header > .header-input {
+    height: 3rem;
+    width: 2rem;
+    align-items: flex-end;
+    padding: .5rem 0;
+}
+
 .popup {
     position: absolute;
     left: 50%;
@@ -229,4 +244,28 @@ body {
     display: block;
     top: 50%;
     opacity: 1;
+}
+
+@media screen and (max-width: 576px) {
+    .grid-size-container {
+        flex-direction: column;
+    }
+    .popup {
+        width: 90vw;
+    }
+    .grid-sidebar > .header-input {
+        height: 1.5rem;
+        width: 2.25rem;
+    }
+    .grid-header > .header-input {
+        height: 2.25rem;
+        width: 1.5rem;
+    }
+    .nonogram-grid-item {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .grid-sidebar {
+        margin-top: calc(2.25rem + 2px);
+    }
 }
