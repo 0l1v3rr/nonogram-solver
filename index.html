@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer type="module"></script> 
+        <script src="main.js" defer type="module"></script> 
         <title>Nonogram Solver</title>
     </head>
     <body>
@@ -20,6 +20,17 @@
             </div>
         </div>
 
+        <div class="popup" data-save-popup>
+            <div class="grid-size-header">Save nonogram</div>
+            <div class="grid-size-container">
+                <div class="message">Name: </div>
+                <input type="text" class="input" data-name-input required>
+            </div>
+            <div class="grid-size-footer">
+                <button class="btn-primary" style="margin-left: auto;" data-save-btn>Save</button>
+            </div>
+        </div>
+
         <div class="grid-size" data-grid-size>
             <div class="grid-size-header">Select grid size</div>
             <div class="grid-size-container">
@@ -28,6 +39,7 @@
                 <div class="grid-size-item" id="grid-15x15">15x15</div>
             </div>
             <div class="grid-size-footer">
+                <a href="saved.html" class="btn-secondary">Saved</a>
                 <button class="btn-primary" data-next-btn>Next</button>
             </div>
         </div>
@@ -42,7 +54,7 @@
                 </div>
             </div>
             <div class="main-subfooter">
-                <button class="btn-icon"><i class='bx bx-save' ></i></button>
+                <button class="btn-icon" data-save-popup-btn><i class='bx bx-save' ></i></button>
                 <button class="btn-icon" data-erase-btn><i class='bx bx-eraser'></i></button>
             </div>
             <div class="main-footer"><button class="btn-secondary" data-back-btn>Back</button> <button class="btn-primary" data-solve-btn>Solve</button></div>

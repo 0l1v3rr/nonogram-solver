@@ -6,6 +6,7 @@ let y = [];
 const gridSizePanel = document.querySelector('[data-grid-size]');
 const mainPanel = document.querySelector('[data-main]');
 const popup = document.querySelector('[data-popup]');
+const savePopup = document.querySelector('[data-save-popup]');
 
 const gridContainer = document.querySelector('[data-grid-container]');
 const gridHeader = document.querySelector('[data-main-header]');
@@ -15,6 +16,8 @@ const solveBtn = document.querySelector('[data-solve-btn]');
 const understandBtn = document.querySelector('[data-understand-btn]');
 
 const eraseBtn = document.querySelector('[data-erase-btn]');
+const saveBtn = document.querySelector('[data-save-btn]');
+const savePopupBtn = document.querySelector('[data-save-popup-btn]');
 
 const nextBtn = document.querySelector('[data-next-btn]');
 const grid5x5 = document.getElementById('grid-5x5');
@@ -106,6 +109,57 @@ understandBtn.onclick = () => {
     mainPanel.classList.remove('blur');
 }
 
+savePopupBtn.onclick = () => {
+    savePopup.classList.add('active');
+    mainPanel.classList.add('blur');
+}
+
+saveBtn.onclick = () => {
+    saveBtn.innerText = 'Saved!';
+    saveBtn.style.cursor = 'unset';
+    setTimeout(() => {
+        savePopup.classList.remove('active');
+        mainPanel.classList.remove('blur');
+        saveBtn.innerText = 'Save';
+        saveBtn.style.cursor = 'pointer';
+
+        const name = document.querySelector('[data-name-input]').value;
+        
+        x = [];
+        y = [];
+        for(let i = 0; i < activeGridSize; i++) {
+            let xvalue = document.getElementById(`x-value-${i}`).innerText;
+            if(xvalue.includes(',')) {
+                x.push(xvalue.split(',').join(' ').split(', ').join(' '));
+            } else {
+                x.push(xvalue);
+            }
+
+            let yvalue = document.getElementById(`y-value-${i}`).innerText;
+            if(yvalue.includes(',')) {
+                y.push(yvalue.split(', ').join(' ').split(',').join(' ').trim());
+            } else {
+                y.push(yvalue);
+            }
+        }
+
+        let toSave;
+        if(localStorage.getItem('savedNonograms') == null) toSave = [];
+        else toSave = JSON.parse(localStorage.getItem('savedNonograms'));
+
+        const objectToSave = {
+            id: uuidv4(),
+            name: name,
+            x: x,
+            y: y,
+            size: activeGridSize
+        };
+        toSave.push(objectToSave);
+        localStorage.setItem('savedNonograms', JSON.stringify(toSave).toString());
+
+    }, 750);
+}
+
 eraseBtn.onclick = () => {
     generateEmptyGrid();
 }
@@ -149,4 +203,8 @@ function emptyGrid() {
         }
     }
     gridContainer.innerHTML = gridInnerHtml;
+}
+
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
 }
