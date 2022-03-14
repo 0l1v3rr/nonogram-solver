@@ -14,6 +14,8 @@ const backBtn = document.querySelector('[data-back-btn]');
 const solveBtn = document.querySelector('[data-solve-btn]');
 const understandBtn = document.querySelector('[data-understand-btn]');
 
+const eraseBtn = document.querySelector('[data-erase-btn]');
+
 const nextBtn = document.querySelector('[data-next-btn]');
 const grid5x5 = document.getElementById('grid-5x5');
 const grid10x10 = document.getElementById('grid-10x10');
@@ -75,14 +77,25 @@ solveBtn.onclick = () => {
     if(solution == null) {
         popup.classList.add('active');
         mainPanel.classList.add('blur');
+        emptyGrid();
         return;
     }
 
     let gridInnerHtml = '';
+    let classes = 'nonogram-grid-item ';
+
     for(let i = 0; i < activeGridSize; i++) {
         for(let j = 0; j < activeGridSize; j++) {
-            if(solution[i][j]) gridInnerHtml += '<div class="nonogram-grid-item filled"></div>';
-            else gridInnerHtml += '<div class="nonogram-grid-item"></div>';
+
+            if(i === 0) classes += 'bt-0 ';
+            if(i === activeGridSize - 1) classes += 'bb-0 ';
+            if(j === 0) classes += 'bl-0 ';
+            if(j === activeGridSize - 1) classes += 'br-0 ';
+
+            if(solution[i][j]) classes += 'filled ';
+
+            gridInnerHtml += `<div class="${classes}"></div>`;
+            classes = 'nonogram-grid-item ';
         }
     }
     gridContainer.innerHTML = gridInnerHtml;
@@ -93,11 +106,12 @@ understandBtn.onclick = () => {
     mainPanel.classList.remove('blur');
 }
 
+eraseBtn.onclick = () => {
+    generateEmptyGrid();
+}
+
 function generateEmptyGrid() {
-    let gridInnerHtml = '';
-    for(let i = 0; i < activeGridSize * activeGridSize; i++) {
-        gridInnerHtml += '<div class="nonogram-grid-item"></div>';
-    }
+    emptyGrid();    
 
     let gridHeaderHtml = '';
     let gridSidebarHtml = '';
@@ -107,7 +121,32 @@ function generateEmptyGrid() {
     }
 
     document.documentElement.style.setProperty('--grid-size', activeGridSize);
-    gridContainer.innerHTML = gridInnerHtml;
     gridDataSidebar.innerHTML = gridSidebarHtml;
     gridDataHeader.innerHTML = gridHeaderHtml;
+}
+
+function emptyGrid() {
+    let gridInnerHtml = '';
+    let classes = 'nonogram-grid-item ';
+
+    for(let i = 0; i < activeGridSize; i++) {
+        for(let j = 0; j < activeGridSize; j++) {
+
+            if(i === 0) classes += 'bt-0 ';
+            if(i === activeGridSize - 1) classes += 'bb-0 ';
+            if(j === 0) classes += 'bl-0 ';
+            if(j === activeGridSize - 1) classes += 'br-0 ';
+
+            if(activeGridSize > 5) {
+                if((j + 1) % 5 === 0 && j != activeGridSize - 1) classes += 'br-1 ';
+                if(j % 5 === 0 && j != 0) classes += 'bl-1 ';
+                if((i + 1) % 5 === 0 && i != activeGridSize - 1) classes += 'bb-1 ';
+                if(i % 5 === 0 && i != 0) classes += 'bt-1 ';
+            }
+
+            gridInnerHtml += `<div class="${classes}"></div>`;
+            classes = 'nonogram-grid-item ';
+        }
+    }
+    gridContainer.innerHTML = gridInnerHtml;
 }
