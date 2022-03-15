@@ -193,10 +193,11 @@ body {
 }
 
 .saved-item {
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .05);
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, .1);
     border-radius: .4rem;
     border: 1px solid var(--border-color);
     width: 10rem;
+    background-color: rgba(255, 255, 255, .2);
 }
 .saved-item-title {
     padding: .5rem 1rem;
@@ -310,6 +311,48 @@ body {
     display: block;
     top: 50%;
     opacity: 1;
+}
+
+.nonogram-preview {
+    padding: .5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.preview-grid {
+    display: grid;
+    gap: 0;
+    border: 2px solid rgba(0, 0, 0, .75);
+    background-color: rgba(255, 255, 255, .4);
+    max-width: fit-content;
+}
+.preview-grid.grid-5 {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+.preview-grid.grid-10 {
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+.preview-grid.grid-15 {
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+}
+.preview-grid.grid-5 > .preview-item {
+    width: calc((10rem - 2rem) / 5);
+    height: calc((10rem - 2rem) / 5);
+}
+.preview-grid.grid-10 > .preview-item {
+    width: calc((10rem - 2rem) / 10);
+    height: calc((10rem - 2rem) / 10);
+}
+.preview-grid.grid-15 > .preview-item {
+    width: calc((10rem - 2rem) / 15);
+    height: calc((10rem - 2rem) / 15);
+}
+.preview-item.filled {
+    background-color: rgba(0, 0, 0, .8);
 }
 
 @media screen and (max-width: 576px) {
