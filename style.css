@@ -303,6 +303,8 @@ body {
 .popup {
     position: absolute;
     left: 50%;
+    width: fit-content;
+    min-width: 30rem;
     transform: translate(-50%, -50%);
     z-index: 3;
     background-color: var(--bg-color);

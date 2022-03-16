@@ -17,6 +17,7 @@ const understandBtn = document.querySelector('[data-understand-btn]');
 
 const eraseBtn = document.querySelector('[data-erase-btn]');
 const saveBtn = document.querySelector('[data-save-btn]');
+const saveCancelBtn = document.querySelector('[data-cancel-save-btn]');
 const savePopupBtn = document.querySelector('[data-save-popup-btn]');
 
 const nextBtn = document.querySelector('[data-next-btn]');
@@ -112,6 +113,11 @@ understandBtn.onclick = () => {
 savePopupBtn.onclick = () => {
     savePopup.classList.add('active');
     mainPanel.classList.add('blur');
+}
+
+saveCancelBtn.onclick = () => {
+    savePopup.classList.remove('active');
+    mainPanel.classList.remove('blur');
 }
 
 saveBtn.onclick = () => {

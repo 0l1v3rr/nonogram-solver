@@ -13,6 +13,7 @@ This is a nonogram solver with a web UI.
 - Responsive(ish)
 - Save nonograms (local storage)
 - Saved nonogram preview
+- Delete saved nonograms
 - Deployed to [GitHub pages](https://0l1v3rr.github.io/nonogram-solver/) - available 24/7
 
 ## Links
